@@ -1,20 +1,43 @@
+import { useState } from 'react';
+import { HangImage } from './components/HangImage';
 import { letters } from './helpers/letters';
 import './App.css'
-import { HangImage } from './components/HangImage';
 
 function App() {
+
+  const [word]= useState('COMPUTADORA');
+  const [hiddenWord, setHiddenWord]=useState('_ '.repeat(word.length));
+
+  const [attempts, setAttempts]=useState(0)
+
+  const checkLetter=(letter:string)=>{
+    if(!word.includes(letter)){
+      setAttempts(attempts+1);
+      return;
+    }
+
+    const hiddenWordArray=hiddenWord.split(' ');
+
+    for(let i=0;i<word.length;i++){
+      if(word[i]===letter){
+          hiddenWordArray[i]=letter;
+      }
+    }
+    setHiddenWord(hiddenWordArray.join(' '));
+    // setAttempts(attempts+ 1);
+    }
  return (
   <div className='App'>
     {/* Imágenes */}
-   <HangImage imageNumber={9}/>
+   <HangImage imageNumber={attempts}/>
      {/* Palabra oculta */}
-    <h3>_ _ _ _ _ _ _ _ _ _ _ _</h3>
+    <h3>{hiddenWord}</h3>
      {/* Contador de intentos */}
-    <h3>intentos: 0</h3>
+    <h3>intentos: {attempts}</h3>
     {/* Botones de letras */}
     {
       letters.map(letter=>(
-        <button key={letter}>{letter}</button>
+        <button onClick={()=>checkLetter(letter)} key={letter}>{letter}</button>
       ))
     }
   </div>
