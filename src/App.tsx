@@ -67,11 +67,11 @@ function App() {
 
     {/* Mensaje si perdió */}
     {
-      (lose) ? <h2><span style={{backgroundColor:'red',color:'white', padding:'0 5px'}}>PERDIÓ</span> la palabra era <u>{word}</u></h2>:''
+      (lose) ? <h2><span style={{backgroundColor:'red',color:'white', padding:'5px'}}>PERDIÓ</span> la palabra era <u>{word}</u></h2>:''
     }
     {/* Mensaje si ganó */}
     {
-      (won) ? <h2>felicidades usted <span style={{backgroundColor:'yellow', padding:'0 5px'}}>GANÓ</span></h2>:''
+      (won) ? <h2>Felicidades Usted <span style={{backgroundColor:'yellow', color:'black', padding:'5px'}}>GANÓ</span></h2>:''
     }
     {/* Botones de letras */}
     {
